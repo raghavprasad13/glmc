@@ -24,6 +24,7 @@
  */
 
 #include "glmc.h"
+#include <math.h>
 
 inline void glmc_vec3f_from_2f(vec3f dest, vec2f src_a, float src_b) {
 	dest[0] = src_a[0];
@@ -49,7 +50,7 @@ inline float glmc_vec3f_sqrlength(vec3f vec) {
 }
 
 inline float glmc_vec3f_length(vec3f vec) {
-	return (float)sqrt(glmc_vec3f_sqrlength);
+	return (float)sqrt(glmc_vec3f_sqrlength(vec));
 }
 
 inline int glmc_vec3f_is_normalized(vec3f src) {
@@ -151,7 +152,7 @@ inline void glmc_vec3f_msub(vec3f dest, vec3f src_a, vec3f src_b) {
 }
 inline 
 float glmc_vecf_dot(vec3f src_a, vec3f src_b) {
-	float dot = (src_a[0] * src_b[0]) + (src_a[1] * src_b[1]) + (src_a[2] * src_b[2])
+	float dot = (src_a[0] * src_b[0]) + (src_a[1] * src_b[1]) + (src_a[2] * src_b[2]);
 	return dot;
 }
 
