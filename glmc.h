@@ -81,7 +81,7 @@ float glmc_vec4f_sqrlength(vec4f vec);
 float glmc_vec4f_length(vec4f vec);
 
 int  glmc_vec4f_is_normalized(vec4f src);
-void glmc_vec4f_normlize(vec4f dest, vec4f src);
+void glmc_vec4f_normalize(vec4f dest, vec4f src);
 
 void glmc_vec4f_add(vec4f dest, vec4f src_a, vec4f src_b); // dest = src_a + src_b;
 void glmc_vec4f_add_dest(vec4f src_dest, vec4f src_b); // dest += src_a;
