@@ -140,4 +140,79 @@ void glmc_vec2f_msub(vec2f dest, vec2f src_a, vec2f src_b); // dest -= src_a * s
 
 float glmc_vec2f_dot(vec2f src_a, vec2f src_b);
 
+
+// types
+
+typedef vec2f mat2f[2];
+typedef vec3f mat3f[3];
+typedef vec4f mat4f[4];
+
+// mat3f
+
+void glmc_mat3f_add(mat3f dest, mat3f src_a, mat3f src_b);	// dest = src_a + src_b;
+void glmc_mat3f_add_dest(mat3f dest, mat3f src_a);			// dest += src_a;
+
+void glmc_mat3f_sub(mat3f dest, mat3f src_a, mat3f src_b);	// dest = src_a - src_b;
+void glmc_mat3f_sub_dest(mat3f dest, mat3f src_a);			// dest -= src_a;
+
+void glmc_mat3f_mul(mat3f dest, mat3f src_a, mat3f src_b);	// dest = src_a * src_b;
+void glmc_mat3f_mul_dest(mat3f dest, mat3f src_a);			// dest *= src_a;
+void glmc_mat3f_mul_s(mat3f dest, mat3f src_a, float src_b);	// dest = src_a * scalar;
+
+void glmc_mat3f_div(mat3f dest, mat3f src_a, mat3f src_b);	// dest = src_a / src_b;
+void glmc_mat3f_div_dest(mat3f dest, mat3f src_a);			// dest /= src_a;
+void glmc_mat3f_div_s(mat3f dest, mat3f src_a, float src_b);	// dest = src_a / scalar;
+
+void glmc_mat3f_addadd(mat3f dest, mat3f src_a, mat3f src_b);	// dest += src_a + src_b;
+void glmc_mat3f_subadd(mat3f dest, mat3f src_a, mat3f src_b);	// dest += src_a - src_b;
+
+void glmc_mat3f_normalize(mat3f dest, mat3f mat);
+void glmc_mat3f_normalize_dest(mat3f dest);
+
+void glmc_mat3f_madd(mat3f dest, mat3f src_a, mat3f src_b);	// dest += src_a * src_b;
+void glmc_mat3f_msub(mat3f dest, mat3f src_a, mat3f src_b);	// dest -= src_a * src_b;
+
+float glmc_mat3f_determinant(mat3f mat);
+
+void glmc_mat3f_inverse(mat3f dest, mat3f mat);
+void glmc_mat3f_inverse_dest(mat3f dest);
+
+void glmc_mat3f_transpose(mat3f dest, mat3f mat);
+void glmc_mat3f_transpose_dest(mat3f dest);
+
+
+// mat2f
+
+void glmc_mat2f_add(mat2f dest, mat2f src_a, mat2f src_b);	// dest = src_a + src_b;
+void glmc_mat2f_add_dest(mat2f dest, mat2f src_a);			// dest += src_a;
+
+void glmc_mat2f_sub(mat2f dest, mat2f src_a, mat2f src_b);	// dest = src_a - src_b;
+void glmc_mat2f_sub_dest(mat2f dest, mat2f src_a);			// dest -= src_a;
+
+void glmc_mat2f_mul(mat2f dest, mat2f src_a, mat2f src_b);	// dest = src_a * src_b;
+void glmc_mat2f_mul_dest(mat2f dest, mat2f src_a);			// dest *= src_a;
+void glmc_mat2f_mul_s(mat2f dest, mat2f src_a, float src_b);	// dest = src_a * scalar;
+
+void glmc_mat2f_div(mat2f dest, mat2f src_a, mat2f src_b);	// dest = src_a / src_b;
+void glmc_mat2f_div_dest(mat2f dest, mat2f src_a);			// dest /= src_a;
+void glmc_mat2f_div_s(mat2f dest, mat2f src_a, float src_b);	// dest = src_a / scalar;
+
+void glmc_mat2f_addadd(mat2f dest, mat2f src_a, mat2f src_b);	// dest += src_a + src_b;
+void glmc_mat2f_subadd(mat2f dest, mat2f src_a, mat2f src_b);	// dest += src_a - src_b;
+
+void glmc_mat2f_normalize(mat2f dest, mat2f mat);
+void glmc_mat2f_normalize_dest(mat2f dest);
+
+void glmc_mat2f_madd(mat2f dest, mat2f src_a, mat2f src_b);	// dest += src_a * src_b;
+void glmc_mat2f_msub(mat2f dest, mat2f src_a, mat2f src_b);	// dest -= src_a * src_b;
+
+float glmc_mat2f_determinant(mat2f mat);
+
+void glmc_mat2f_inverse(mat2f dest, mat2f mat);
+void glmc_mat2f_inverse_dest(mat2f dest);
+
+void glmc_mat2f_transpose(mat2f dest, mat2f mat);
+void glmc_mat2f_transpose_dest(mat2f dest);
+
+
 #endif /* _GLMC_H */
