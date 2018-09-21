@@ -116,7 +116,7 @@ float glmc_vec2f_sqrlength(vec2f vec);
 float glmc_vec2f_length(vec2f vec);
 
 int  glmc_vec2f_is_normalized(vec2f src);
-void glmc_vec2f_normlize(vec2f dest, vec2f src);
+void glmc_vec2f_normalize(vec2f dest, vec2f src);
 
 void glmc_vec2f_add(vec2f dest, vec2f src_a, vec2f src_b); // dest = src_a + src_b;
 void glmc_vec2f_add_dest(vec2f src_dest, vec2f src_b); // dest += src_a;

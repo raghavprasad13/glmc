@@ -167,8 +167,8 @@ inline void glmc_vec4f_msub(vec4f dest, vec4f src_a, vec4f src_b) {
 	dest[2] -= src_a[2] * src_b[2];
 	dest[3] -= src_a[3] * src_b[3];
 }
-inline 
-float glmc_vecf_dot(vec4f src_a, vec4f src_b) {
+
+inline float glmc_vecf_dot(vec4f src_a, vec4f src_b) {
 	float dot = (src_a[0] * src_b[0]) + (src_a[1] * src_b[1]) + (src_a[2] * src_b[2]) + (src_a[3] * src_b[3]);
 	return dot;
 }
