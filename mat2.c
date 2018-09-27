@@ -168,3 +168,19 @@ inline void glmc_mat2f_inverse_dest(mat2f dest) {
 
 	glmc_mat2f_inverse(dest, temp);
 }
+
+inline void glmc_mat2f_scale(mat2f scale_matrix, vec2f vec) {
+	scale_matrix[0][0] = vec[0];
+	scale_matrix[0][1] = 0;
+
+	scale_matrix[1][0] = 0;
+	scale_matrix[1][1] = vec[1];
+}
+
+inline void glmc_mat2f_translate(mat2f translation_matrix, float vec) {
+	translation_matrix[0][0] = 1;
+	translation_matrix[0][1] = vec;
+
+	translation_matrix[1][0] = 0;
+	translation_matrix[1][1] = 1;
+}

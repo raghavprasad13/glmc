@@ -180,6 +180,8 @@ void glmc_mat3f_inverse_dest(mat3f dest);
 void glmc_mat3f_transpose(mat3f dest, mat3f mat);
 void glmc_mat3f_transpose_dest(mat3f dest);
 
+void glmc_mat3f_scale(mat3f scale_matrix, vec3f vec);
+void glmc_mat3f_translate(mat3f translation_matrix, vec2f vec);
 
 // mat2f
 
@@ -214,5 +216,44 @@ void glmc_mat2f_inverse_dest(mat2f dest);
 void glmc_mat2f_transpose(mat2f dest, mat2f mat);
 void glmc_mat2f_transpose_dest(mat2f dest);
 
+void glmc_mat2f_scale(mat2f scale_matrix, vec2f vec);
+void glmc_mat2f_translate(mat2f translation_matrix, float vec);
+
+
+// mat4f
+
+void glmc_mat4f_add(mat4f dest, mat4f src_a, mat4f src_b);	// dest = src_a + src_b;
+void glmc_mat4f_add_dest(mat4f dest, mat4f src_a);			// dest += src_a;
+
+void glmc_mat4f_sub(mat4f dest, mat4f src_a, mat4f src_b);	// dest = src_a - src_b;
+void glmc_mat4f_sub_dest(mat4f dest, mat4f src_a);			// dest -= src_a;
+
+void glmc_mat4f_mul(mat4f dest, mat4f src_a, mat4f src_b);	// dest = src_a * src_b;
+void glmc_mat4f_mul_dest(mat4f dest, mat4f src_a);			// dest *= src_a;
+void glmc_mat4f_mul_s(mat4f dest, mat4f src_a, float src_b);	// dest = src_a * scalar;
+
+void glmc_mat4f_div(mat4f dest, mat4f src_a, mat4f src_b);	// dest = src_a / src_b;
+void glmc_mat4f_div_dest(mat4f dest, mat4f src_a);			// dest /= src_a;
+void glmc_mat4f_div_s(mat4f dest, mat4f src_a, float src_b);	// dest = src_a / scalar;
+
+void glmc_mat4f_addadd(mat4f dest, mat4f src_a, mat4f src_b);	// dest += src_a + src_b;
+void glmc_mat4f_subadd(mat4f dest, mat4f src_a, mat4f src_b);	// dest += src_a - src_b;
+
+void glmc_mat4f_normalize(mat4f dest, mat4f mat);
+void glmc_mat4f_normalize_dest(mat4f dest);
+
+void glmc_mat4f_madd(mat4f dest, mat4f src_a, mat4f src_b);	// dest += src_a * src_b;
+void glmc_mat4f_msub(mat4f dest, mat4f src_a, mat4f src_b);	// dest -= src_a * src_b;
+
+float glmc_mat4f_determinant(mat4f mat);
+
+void glmc_mat4f_inverse(mat4f dest, mat4f mat);
+void glmc_mat4f_inverse_dest(mat4f dest);
+
+void glmc_mat4f_transpose(mat4f dest, mat4f mat);
+void glmc_mat4f_transpose_dest(mat4f dest);
+
+void glmc_mat4f_scale(mat4f scale_matrix, vec4f vec);
+void glmc_mat4f_translate(mat4f translation_matrix, vec3f vec);
 
 #endif /* _GLMC_H */

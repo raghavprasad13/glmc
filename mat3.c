@@ -250,3 +250,31 @@ inline void glmc_mat3f_inverse_dest(mat3f dest) {
 
 	glmc_mat3f_inverse(dest, temp);
 }
+
+inline void glmc_mat3f_scale(mat3f scale_matrix, vec3f vec) {
+	scale_matrix[0][0] = vec[0];
+	scale_matrix[0][1] = 0;
+	scale_matrix[0][2] = 0;
+
+	scale_matrix[1][0] = 0;
+	scale_matrix[1][1] = vec[1];
+	scale_matrix[1][2] = 0;
+
+	scale_matrix[2][0] = 0;
+	scale_matrix[2][1] = 0;
+	scale_matrix[2][2] = vec[2];
+}
+
+inline void glmc_mat3f_translate(mat3f translation_matrix, vec2f vec) {
+	translation_matrix[0][0] = 1;
+	translation_matrix[0][1] = 0;
+	translation_matrix[0][2] = vec[0];
+
+	translation_matrix[1][0] = 0;
+	translation_matrix[1][1] = 1;
+	translation_matrix[1][2] = vec[1];
+
+	translation_matrix[2][0] = 0;
+	translation_matrix[2][1] = 0;
+	translation_matrix[2][2] = 1;
+}
