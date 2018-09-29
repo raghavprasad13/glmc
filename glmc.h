@@ -27,6 +27,9 @@
 #define _GLMC_H
 
 #include <stdint.h>
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
 
 // types
 
@@ -46,6 +49,7 @@ float glmc_vec3f_length(vec3f vec);
 
 int  glmc_vec3f_is_normalized(vec3f src);
 void glmc_vec3f_normalize(vec3f dest, vec3f src);
+void glmc_vec3f_normalize_dest(vec3f dest);
 
 void glmc_vec3f_add(vec3f dest, vec3f src_a, vec3f src_b); // dest = src_a + src_b;
 void glmc_vec3f_add_dest(vec3f src_dest, vec3f src_b); // dest += src_a;
@@ -85,6 +89,7 @@ float glmc_vec4f_length(vec4f vec);
 
 int  glmc_vec4f_is_normalized(vec4f src);
 void glmc_vec4f_normalize(vec4f dest, vec4f src);
+void glmc_vec4f_normalize_dest(vec4f dest);
 
 void glmc_vec4f_add(vec4f dest, vec4f src_a, vec4f src_b); // dest = src_a + src_b;
 void glmc_vec4f_add_dest(vec4f src_dest, vec4f src_b); // dest += src_a;
@@ -120,6 +125,7 @@ float glmc_vec2f_length(vec2f vec);
 
 int  glmc_vec2f_is_normalized(vec2f src);
 void glmc_vec2f_normalize(vec2f dest, vec2f src);
+void glmc_vec2f_normalize_dest(vec2f dest);
 
 void glmc_vec2f_add(vec2f dest, vec2f src_a, vec2f src_b); // dest = src_a + src_b;
 void glmc_vec2f_add_dest(vec2f src_dest, vec2f src_b); // dest += src_a;
@@ -188,6 +194,9 @@ void glmc_mat3f_translate(mat3f translation_matrix, vec2f vec);
 
 void glmc_mat3f_mul_vec3f(vec3f dest, mat3f mat, vec3f vec);
 
+void glmc_mat3f_glsl(float* arr, mat3f mat);
+void glmc_mat3f_enter_matrix(mat3f mat);
+
 // mat2f
 
 void glmc_mat2f_add(mat2f dest, mat2f src_a, mat2f src_b);	// dest = src_a + src_b;
@@ -224,7 +233,10 @@ void glmc_mat2f_transpose_dest(mat2f dest);
 void glmc_mat2f_scale(mat2f scale_matrix, vec2f vec);
 void glmc_mat2f_translate(mat2f translation_matrix, float vec);
 
-void glmc_mat2f_mul_vec2f(vec2f dest, mat2f mat, vec2f vec)
+void glmc_mat2f_mul_vec2f(vec2f dest, mat2f mat, vec2f vec);
+
+void glmc_mat2f_glsl(float* arr, mat2f mat);
+void glmc_mat2f_enter_matrix(mat2f mat);
 
 
 // mat4f
@@ -268,6 +280,9 @@ void glmc_mat4f_mul_vec4f(vec4f dest, mat4f mat, vec4f vec);
 
 void glmc_mat4f_perspective(mat4f perspective, float fov, float near, float far);
 void glmc_mat4f_orthogonal(mat4f orthogonal, float right, float left, float far, float near, float top, float bottom);
+
+void glmc_mat4f_glsl(float* arr, mat4f mat);
+void glmc_mat4f_enter_matrix(mat4f mat);
 
 
 // matrix_vector_multiplication

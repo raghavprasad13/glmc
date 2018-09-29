@@ -24,7 +24,7 @@
  */
 
 #include "glmc.h"
-#include <math.h>
+
 
 inline float glmc_mat2f_determinant(mat2f mat) {
 	return ((mat[0][0] * mat[1][1]) - (mat[0][1] * mat[1][0]));
@@ -188,4 +188,36 @@ inline void glmc_mat2f_translate(mat2f translation_matrix, float vec) {
 inline void glmc_mat2f_mul_vec2f(vec2f dest, mat2f mat, vec2f vec) {
 	dest[0] = (mat[0][0] * vec[0]) + (mat[0][1] * vec[1]);
 	dest[1] = (mat[1][0] * vec[0]) + (mat[1][1] * vec[1]);
+}
+
+inline void glmc_mat2f_glsl(float* arr, mat2f mat) {
+	arr = (float*)malloc(4 * sizeof(float));
+
+	arr[0] = mat[0][0];
+	arr[1] = mat[1][0];
+
+	arr[2] = mat[0][1];
+	arr[3] = mat[1][1];
+}
+
+inline void glmc_mat2f_enter_matrix(mat2f mat) {
+	int flag;
+
+	printf("Element (1, 1): ");
+	scanf("%f", &mat[0][0]);
+
+	printf("\nElement (2, 1): ");
+	scanf("%f", &mat[1][0]);
+
+	printf("\nElement (1, 2): ");
+	scanf("%f", &mat[0][1]);
+
+	printf("\nElement (2, 2): ");
+	scanf("%f", &mat[1][1]);
+
+	printf("\nFlag: ");
+	scanf("%d", &flag);
+
+	if(flag != 0)
+		glmc_mat2f_normalize_dest(mat);
 }

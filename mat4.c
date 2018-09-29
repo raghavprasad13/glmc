@@ -24,7 +24,7 @@
  */
 
 #include "glmc.h"
-#include <math.h>
+
 
 inline float glmc_mat4f_determinant(mat4f mat) {
 	mat3f temp;
@@ -364,22 +364,22 @@ inline void glmc_mat4f_translate(mat4f translation_matrix, vec3f vec) {
 }
 
 inline void glmc_mat4f_rotation(mat4f rotation_matrix, float ux, float uy, float uz, float angle) {
-	float cos = cos(angle);
-	float sin = sin(angle);
+	float cosine = cos(angle);
+	float sine = sin(angle);
 
-	rotation_matrix[0][0] = cos + ux * ux * (1-c);
-	rotation_matrix[0][1] = uy * ux * (1-cos) + uz * sin;
-	rotation_matrix[0][2] = uz * ux * (1-cos) - uy * sin;
+	rotation_matrix[0][0] = cosine + ux * ux * (1-cosine);
+	rotation_matrix[0][1] = uy * ux * (1-cosine) + uz * sine;
+	rotation_matrix[0][2] = uz * ux * (1-cosine) - uy * sine;
 	rotation_matrix[0][3] = 0;
 
-	rotation_matrix[1][0] = ux * uy * (1-cos) - uz * sin;
-	rotation_matrix[1][1] = cos + uy * uy * (1-cos);
-	rotation_matrix[1][2] = uz * uy*(1-cos) + ux * sin;
+	rotation_matrix[1][0] = ux * uy * (1-cosine) - uz * sine;
+	rotation_matrix[1][1] = cosine + uy * uy * (1-cosine);
+	rotation_matrix[1][2] = uz * uy*(1-cosine) + ux * sine;
 	rotation_matrix[1][3] = 0;
 
-	rotation_matrix[2][0] = ux * uz * (1-cos) + uy * sin;
-	rotation_matrix[2][1] = uy * uz * (1-c) - ux * sin;
-	rotation_matrix[2][2] = cos + uz * uz * (1-cos);
+	rotation_matrix[2][0] = ux * uz * (1-cosine) + uy * sine;
+	rotation_matrix[2][1] = uy * uz * (1-cosine) - ux * sine;
+	rotation_matrix[2][2] = cosine + uz * uz * (1-cosine);
 	rotation_matrix[2][3] = 0;
 
 	rotation_matrix[3][0] = 0;
@@ -413,7 +413,7 @@ inline void glmc_mat4f_perspective(mat4f perspective, float fov, float near, flo
 	perspective[2][0] = 0;
 	perspective[2][1] = 0;
 	perspective[2][2] = (-1.0f * far) / (far - near);
-	perspective[2][3] = -1.0f
+	perspective[2][3] = -1.0f;
 
 	perspective[3][0] = 0;
 	perspective[3][1] = 0;
@@ -441,4 +441,90 @@ inline void glmc_mat4f_orthogonal(mat4f orthogonal, float right, float left, flo
 	orthogonal[3][1] = 0;
 	orthogonal[3][2] = 0;
 	orthogonal[3][3] = 1.0f;
+}
+
+inline void glmc_mat4f_glsl(float* arr, mat4f mat) {
+	arr = (float*)malloc(16 * sizeof(float));
+
+	arr[0] = mat[0][0];
+	arr[1] = mat[1][0];
+	arr[2] = mat[2][0];
+	arr[3] = mat[3][0];
+
+	arr[4] = mat[0][1];
+	arr[5] = mat[1][1];
+	arr[6] = mat[2][1];
+	arr[7] = mat[3][1];
+
+	arr[8] = mat[0][2];
+	arr[9] = mat[1][2];
+	arr[10] = mat[2][2];
+	arr[11] = mat[3][2];
+
+	arr[12] = mat[0][3];
+	arr[13] = mat[1][3];
+	arr[14] = mat[2][3];
+	arr[15] = mat[3][3];
+}
+
+inline void glmc_mat4f_enter_matrix(mat4f mat) {
+	int flag;
+
+	printf("Element (1, 1): ");
+	scanf("%f", &mat[0][0]);
+
+	printf("\nElement (2, 1): ");
+	scanf("%f", &mat[1][0]);
+
+	printf("\nElement (3, 1): ");
+	scanf("%f", &mat[2][0]);
+
+	printf("\nElement (4, 1): ");
+	scanf("%f", &mat[3][0]);
+
+
+	printf("\nElement (1, 2): ");
+	scanf("%f", &mat[0][1]);
+
+	printf("\nElement (2, 2): ");
+	scanf("%f", &mat[1][1]);
+
+	printf("\nElement (3, 2): ");
+	scanf("%f", &mat[2][1]);
+
+	printf("\nElement (4, 2): ");
+	scanf("%f", &mat[3][1]);
+
+
+	printf("\nElement (1, 3): ");
+	scanf("%f", &mat[0][2]);
+
+	printf("\nElement (2, 3): ");
+	scanf("%f", &mat[1][2]);
+
+	printf("\nElement (3, 3): ");
+	scanf("%f", &mat[2][2]);
+
+	printf("\nElement (4, 3): ");
+	scanf("%f", &mat[3][2]);
+
+
+	printf("\nElement (1, 4): ");
+	scanf("%f", &mat[0][3]);
+
+	printf("\nElement (2, 4): ");
+	scanf("%f", &mat[1][3]);
+
+	printf("\nElement (3, 4): ");
+	scanf("%f", &mat[2][3]);
+
+	printf("\nElement (4, 4): ");
+	scanf("%f", &mat[3][3]);
+
+
+	printf("\nFlag: ");
+	scanf("%d", &flag);
+
+	if(flag != 0)
+		glmc_mat4f_normalize_dest(mat);
 }

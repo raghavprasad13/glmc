@@ -24,7 +24,7 @@
  */
 
 #include "glmc.h"
-#include <math.h>
+
 
 inline void glmc_vec4f_from_2f(vec4f dest, vec2f src_a, float src_b, float src_c) {
 	dest[0] = src_a[0];
@@ -68,6 +68,12 @@ inline void glmc_vec4f_normalize(vec4f dest, vec4f src) {
 	dest[1] = src[1]/normalization_constant;
 	dest[2] = src[2]/normalization_constant;
 	dest[3] = src[3]/normalization_constant;
+}
+
+inline void glmc_vec4f_normalize_dest(vec4f dest) {
+	vec4f temp;
+	glmc_vec4f_copy(temp, dest);
+	glmc_vec4f_normalize(dest, temp);
 }
 
 inline void glmc_vec4f_add(vec4f dest, vec4f src_a, vec4f src_b) {

@@ -24,7 +24,7 @@
  */
 
 #include "glmc.h"
-#include <math.h>
+
 
 inline void glmc_mat2f_vec2f(vec2f dest, mat2f mat, vec2f vec) {
 	dest[0] = (mat[0][0] * vec[0]) + (mat[0][1] * vec[1]);

@@ -24,7 +24,7 @@
  */
 
 #include "glmc.h"
-#include <math.h>
+
 
 inline void glmc_vec3f_from_2f(vec3f dest, vec2f src_a, float src_b) {
 	dest[0] = src_a[0];

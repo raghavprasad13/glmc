@@ -24,7 +24,7 @@
  */
 
 #include "glmc.h"
-#include <math.h>
+
 
 inline float glmc_mat3f_determinant(mat3f mat) {
 	float term1 = mat[0][0] * ((mat[1][1] * mat[2][2]) - (mat[1][2] * mat[2][1]));
@@ -283,4 +283,57 @@ inline void glmc_mat3f_mul_vec3f(vec3f dest, mat3f mat, vec3f vec) {
 	dest[0] = (mat[0][0] * vec[0]) + (mat[0][1] * vec[1]) + (mat[0][2] * vec[2]);
 	dest[1] = (mat[1][0] * vec[0]) + (mat[1][1] * vec[1]) + (mat[1][2] * vec[2]);
 	dest[2] = (mat[2][0] * vec[0]) + (mat[2][1] * vec[1]) + (mat[2][2] * vec[2]);
+}
+
+inline void glmc_mat3f_glsl(float* arr, mat3f mat) {
+	arr = (float*)malloc(9 * sizeof(float));
+
+	arr[0] = mat[0][0];
+	arr[1] = mat[1][0];
+	arr[2] = mat[2][0];
+
+	arr[3] = mat[0][1];
+	arr[4] = mat[1][1];
+	arr[5] = mat[2][1];
+
+	arr[6] = mat[0][2];
+	arr[7] = mat[1][2];
+	arr[8] = mat[2][2];
+}
+
+inline void glmc_mat3f_enter_matrix(mat3f mat) {
+	int flag;
+
+	printf("Element (1, 1): ");
+	scanf("%f", &mat[0][0]);
+
+	printf("\nElement (2, 1): ");
+	scanf("%f", &mat[1][0]);
+
+	printf("\nElement (3, 1): ");
+	scanf("%f", &mat[2][0]);
+
+	printf("\nElement (1, 2): ");
+	scanf("%f", &mat[0][1]);
+
+	printf("\nElement (2, 2): ");
+	scanf("%f", &mat[1][1]);
+
+	printf("\nElement (3, 2): ");
+	scanf("%f", &mat[2][1]);
+
+	printf("\nElement (1, 3): ");
+	scanf("%f", &mat[0][2]);
+
+	printf("\nElement (2, 3): ");
+	scanf("%f", &mat[1][2]);
+
+	printf("\nElement (3, 3): ");
+	scanf("%f", &mat[2][2]);
+
+	printf("\nFlag: ");
+	scanf("%d", &flag);
+
+	if(flag != 0)
+		glmc_mat3f_normalize_dest(mat);
 }
