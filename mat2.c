@@ -184,3 +184,8 @@ inline void glmc_mat2f_translate(mat2f translation_matrix, float vec) {
 	translation_matrix[1][0] = 0;
 	translation_matrix[1][1] = 1;
 }
+
+inline void glmc_mat2f_mul_vec2f(vec2f dest, mat2f mat, vec2f vec) {
+	dest[0] = (mat[0][0] * vec[0]) + (mat[0][1] * vec[1]);
+	dest[1] = (mat[1][0] * vec[0]) + (mat[1][1] * vec[1]);
+}

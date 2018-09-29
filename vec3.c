@@ -66,6 +66,12 @@ inline void glmc_vec3f_normalize(vec3f dest, vec3f src) {
 	dest[2] = src[2]/normalization_constant;
 }
 
+inline void glmc_vec3f_normalize_dest(vec3f dest) {
+	vec3f temp;
+	glmc_vec3f_copy(temp, dest);
+	glmc_vec3f_normalize(dest, temp);
+}
+
 inline void glmc_vec3f_add(vec3f dest, vec3f src_a, vec3f src_b) {
 	dest[0] = src_a[0] + src_b[0];
 	dest[1] = src_a[1] + src_b[1];
@@ -151,7 +157,7 @@ inline void glmc_vec3f_msub(vec3f dest, vec3f src_a, vec3f src_b) {
 	dest[2] -= src_a[2] * src_b[2];
 }
 
-inline float glmc_vecf_dot(vec3f src_a, vec3f src_b) {
+inline float glmc_vec3f_dot(vec3f src_a, vec3f src_b) {
 	float dot = (src_a[0] * src_b[0]) + (src_a[1] * src_b[1]) + (src_a[2] * src_b[2]);
 	return dot;
 }
@@ -160,4 +166,37 @@ inline void glmc_vec3f_cross(vec3f dest, vec3f src_a, vec3f src_b) {
 	dest[0] = (src_a[1] * src_b[2]) - (src_a[2] * src_b[1]);
 	dest[1] = (src_a[2] * src_b[0]) - (src_a[0] * src_b[2]);
 	dest[2] = (src_a[0] * src_b[1]) - (src_a[1] * src_b[0]);
+}
+
+inline void glmc_vec3f_reflect(vec3f reflected, vec3f incident, vec3f normal) {
+	vec3f temp;
+
+	if(glmc_vec3f_is_normalized(normal) != 1)
+		glmc_vec3f_normalize_dest(normal);
+
+	if(glmc_vec3f_is_normalized(incident) != 1)
+		glmc_vec3f_normalize_dest(incident);
+
+	glmc_vec3f_mul_s(temp, normal, 2 * glmc_vec3f_dot(incident, normal));
+	glmc_vec3f_sub(reflected, incident, temp);
+}
+
+inline void glmc_vec3f_refract(vec3f refracted, vec3f incident, vec3f normal, float mu) {
+	vec3f temp1, temp2;
+	float coeff;
+	float dot = glmc_vec3f_dot(incident, normal);
+
+	if(glmc_vec3f_is_normalized(incident) != 1)
+		glmc_vec3f_normalize_dest(incident);
+
+	if(glmc_vec3f_is_normalized(normal) != 1)
+		glmc_vec3f_normalize_dest(normal);
+
+	glmc_vec3f_mul_s(temp1, incident, mu);
+
+	coeff = (-1 * mu * dot) - sqrtf(1 - mu * mu * (1 - dot * dot));
+
+	glmc_vec3f_mul_s(temp2, normal, coeff);
+
+	glmc_vec3f_add(refracted, temp1, temp2);
 }

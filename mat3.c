@@ -278,3 +278,9 @@ inline void glmc_mat3f_translate(mat3f translation_matrix, vec2f vec) {
 	translation_matrix[2][1] = 0;
 	translation_matrix[2][2] = 1;
 }
+
+inline void glmc_mat3f_mul_vec3f(vec3f dest, mat3f mat, vec3f vec) {
+	dest[0] = (mat[0][0] * vec[0]) + (mat[0][1] * vec[1]) + (mat[0][2] * vec[2]);
+	dest[1] = (mat[1][0] * vec[0]) + (mat[1][1] * vec[1]) + (mat[1][2] * vec[2]);
+	dest[2] = (mat[2][0] * vec[0]) + (mat[2][1] * vec[1]) + (mat[2][2] * vec[2]);
+}

@@ -362,3 +362,83 @@ inline void glmc_mat4f_translate(mat4f translation_matrix, vec3f vec) {
 	translation_matrix[3][2] = 0;
 	translation_matrix[3][3] = 1;
 }
+
+inline void glmc_mat4f_rotation(mat4f rotation_matrix, float ux, float uy, float uz, float angle) {
+	float cos = cos(angle);
+	float sin = sin(angle);
+
+	rotation_matrix[0][0] = cos + ux * ux * (1-c);
+	rotation_matrix[0][1] = uy * ux * (1-cos) + uz * sin;
+	rotation_matrix[0][2] = uz * ux * (1-cos) - uy * sin;
+	rotation_matrix[0][3] = 0;
+
+	rotation_matrix[1][0] = ux * uy * (1-cos) - uz * sin;
+	rotation_matrix[1][1] = cos + uy * uy * (1-cos);
+	rotation_matrix[1][2] = uz * uy*(1-cos) + ux * sin;
+	rotation_matrix[1][3] = 0;
+
+	rotation_matrix[2][0] = ux * uz * (1-cos) + uy * sin;
+	rotation_matrix[2][1] = uy * uz * (1-c) - ux * sin;
+	rotation_matrix[2][2] = cos + uz * uz * (1-cos);
+	rotation_matrix[2][3] = 0;
+
+	rotation_matrix[3][0] = 0;
+	rotation_matrix[3][1] = 0;
+	rotation_matrix[3][2] = 0;
+	rotation_matrix[3][3] = 1.0f;
+}
+
+inline void glmc_mat4f_mul_vec4f(vec4f dest, mat4f mat, vec4f vec) {
+	dest[0] = (mat[0][0] * vec[0]) + (mat[0][1] * vec[1]) + (mat[0][2] * vec[2]) + (mat[0][3] * vec[3]);
+	dest[1] = (mat[1][0] * vec[0]) + (mat[1][1] * vec[1]) + (mat[1][2] * vec[2]) + (mat[1][3] * vec[3]);
+	dest[2] = (mat[2][0] * vec[0]) + (mat[2][1] * vec[1]) + (mat[2][2] * vec[2]) + (mat[2][3] * vec[3]);
+	dest[3] = (mat[3][0] * vec[0]) + (mat[3][1] * vec[1]) + (mat[3][2] * vec[2]) + (mat[3][3] * vec[3]);
+}
+
+inline void glmc_mat4f_perspective(mat4f perspective, float fov, float near, float far) {
+	float tan_of_halfOfFov = tan(fov/2);
+
+	float S = 1.0f/tan_of_halfOfFov;
+
+	perspective[0][0] = S;
+	perspective[0][1] = 0;
+	perspective[0][2] = 0;
+	perspective[0][3] = 0;
+
+	perspective[1][0] = 0;
+	perspective[1][1] = S;
+	perspective[1][2] = 0;
+	perspective[1][3] = 0;
+
+	perspective[2][0] = 0;
+	perspective[2][1] = 0;
+	perspective[2][2] = (-1.0f * far) / (far - near);
+	perspective[2][3] = -1.0f
+
+	perspective[3][0] = 0;
+	perspective[3][1] = 0;
+	perspective[3][2] = (-1.0f * far * near) / (far - near);
+	perspective[3][3] = 0;
+}
+
+inline void glmc_mat4f_orthogonal(mat4f orthogonal, float right, float left, float far, float near, float top, float bottom) {
+	orthogonal[0][0] = 2.0f / (right - left);
+	orthogonal[0][1] = 0;
+	orthogonal[0][2] = 0;
+	orthogonal[0][3] = (right + left) / (left - right);
+
+	orthogonal[1][0] = 0;
+	orthogonal[1][1] = 2.0f / (top - bottom);
+	orthogonal[1][2] = 0;
+	orthogonal[1][3] = (top + bottom) / (bottom - top);
+
+	orthogonal[2][0] = 0;
+	orthogonal[2][1] = 0;
+	orthogonal[2][2] = 2.0f / (near - far);
+	orthogonal[2][3] = (far + near) / (near - far);
+
+	orthogonal[3][0] = 0;
+	orthogonal[3][1] = 0;
+	orthogonal[3][2] = 0;
+	orthogonal[3][3] = 1.0f;
+}
