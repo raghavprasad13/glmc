@@ -256,4 +256,11 @@ void glmc_mat4f_transpose_dest(mat4f dest);
 void glmc_mat4f_scale(mat4f scale_matrix, vec4f vec);
 void glmc_mat4f_translate(mat4f translation_matrix, vec3f vec);
 
+
+// matrix_vector_multiplication
+
+void glmc_mat2f_vec2f(vec2f dest, mat2f mat, vec2f vec);
+void glmc_mat3f_vec3f(vec3f dest, mat3f mat, vec3f vec);
+void glmc_mat4f_vec4f(vec4f dest, mat4f mat, vec4f vec);
+
 #endif /* _GLMC_H */
